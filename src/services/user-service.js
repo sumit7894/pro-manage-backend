@@ -68,5 +68,22 @@ class UserService{
             throw error;
         }
     }
+    async update(data){
+        try {
+            const user = await this.get(data.email);
+            if(!user){
+                throw new ServiceError("No user exist with this email","Error in signin")
+            }
+            const matchPassword = await this.comparePassword(data.oldPassword,user.password);
+            if(!matchPassword){
+                throw new ServiceError("Wrong Password","Password doesn't match",StatusCodes.UNAUTHORIZED)
+            }
+            const updatedUser = await this.userRepository.update(data);
+            return updatedUser;
+        } catch (error) {
+            console.log("Somthing went wrong in service layer",error);
+            throw error;
+        }
+    }
 }
 module.exports = UserService;

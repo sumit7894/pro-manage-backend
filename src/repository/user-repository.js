@@ -23,5 +23,17 @@ class UserRepository{
             throw error;
         }
     }
+    async update(data)
+    {
+        try {
+            const {name,email,newPassword} = data;
+            const encryptedPassword = bcrypt.hashSync(newPassword,SALT);
+            const user = await User.findOneAndUpdate({email},{name:name,password:encryptedPassword},{new:true});
+            return user;
+        } catch (error) {
+            console.log("Somthing went wrong in the repository layer",error);
+            throw error;
+        }
+    }
 }
 module.exports = UserRepository;
