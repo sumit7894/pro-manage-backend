@@ -62,7 +62,7 @@ class UserService{
             throw new ServiceError("Wrong Password","Password doesn't match",StatusCodes.UNAUTHORIZED)
         }
         const token = await this.createToken(data.email,user.name);
-        return {"name":user.name,"token":token};
+        return {"name":user.name,"token":token,"id":user._id};
         }catch(error){
             console.log("Somthing went wrong in service layer",error);
             throw error;
