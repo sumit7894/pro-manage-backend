@@ -78,7 +78,7 @@ const deleteTask = async(req,res)=>{
         })
         return res.status(201).json({
             success:true,
-            message:"Successfully deleted the task category",
+            message:"Successfully deleted the task",
             data:response,
             err:{}
         });

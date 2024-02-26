@@ -34,7 +34,7 @@ class TaskRepository{
     
     async destroy(_id){
         try {
-            await Task.findOneAndDelete({_id:_id});
+            await Task.findOneAndDelete({_id});
         } catch (error) {
             console.log("Somthing went wrong in repo layer",error);
         }

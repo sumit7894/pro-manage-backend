@@ -17,7 +17,7 @@ const taskSchema = new mongoose.Schema({
     }
       ],
     dueDate: {
-      type: Date
+      type: Date,
     },
     priority: {
       type: String,
@@ -26,8 +26,8 @@ const taskSchema = new mongoose.Schema({
     },
     category: {
       type: String,
-      enum: ['todo', 'backlog', 'in progress', 'done'],
-      default: 'todo'
+      enum: ['BACKLOG', 'TO-DO', 'PROGRESS', 'DONE'],
+      default: 'TO-DO'
     },
     countCompletedTask:{
       type:Number,
