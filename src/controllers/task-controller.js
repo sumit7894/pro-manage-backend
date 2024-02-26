@@ -71,9 +71,32 @@ const updateCategory = async(req,res)=>{
     }
 }
 
+const deleteTask = async(req,res)=>{
+    try {
+        const response = await taskService.destroy({
+            _id:req.body.taskId
+        })
+        return res.status(201).json({
+            success:true,
+            message:"Successfully deleted the task category",
+            data:response,
+            err:{}
+        });
+    } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+        success:false,
+        message:error.message,
+        data:{},
+        err:error
+    })
+    }
+}
+
 
 module.exports ={
     createTask,
     getTask,
-    updateCategory
+    updateCategory,
+    deleteTask
 }

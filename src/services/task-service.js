@@ -31,7 +31,16 @@ class TaskService{
             console.log("Somthing went wrong in a service layer",error)
         }
     }
+
+    async destroy(_id){
+        try {
+            await this.taskRepository.destroy(_id);
+        } catch (error) {
+            console.log("Somthing went wrong");
+        }
+    }
     
-}
+}   
+    
 
 module.exports = TaskService;
