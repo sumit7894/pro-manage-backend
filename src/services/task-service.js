@@ -39,6 +39,14 @@ class TaskService{
             console.log("Somthing went wrong");
         }
     }
+    async update(data){
+        try {
+            await this.taskRepository.update(data);
+        } catch (error) {
+            console.log("Somthging went wrong in service layer");
+            throw error;
+        }
+    }
     
 }   
     

@@ -1,4 +1,5 @@
 const TaskService = require('../services/task-service');
+const UserService = require('../services/user-service');
 
 const taskService = new TaskService();
 
@@ -93,10 +94,38 @@ const deleteTask = async(req,res)=>{
     }
 }
 
+const updateTask = async(req,res) =>{
+    try {
+        const response = await taskService.update({
+            _id:req.body._id,
+            title:req.body.taskTitle,
+            priority:req.body.selectedPriority,
+            checklists:req.body.checklists,
+            countCompletedTask:req.body.countCompletedTask,
+            dueDate:req.body.dueDate
+        })
+        return res.status(201).json({
+            success:true,
+            message:"Successfully updated the task",
+            data:response,
+            err:{}
+        });
+    } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+        success:false,
+        message:error.message,
+        data:{},
+        err:error
+    })
+    }
+}
+
 
 module.exports ={
     createTask,
     getTask,
     updateCategory,
-    deleteTask
+    deleteTask,
+    updateTask
 }

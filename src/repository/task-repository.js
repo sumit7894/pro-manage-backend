@@ -39,7 +39,22 @@ class TaskRepository{
             console.log("Somthing went wrong in repo layer",error);
         }
     }
-   
+   async update(data)
+   {
+    try {
+        const {_id,title,checklists,dueDate,priority,countCompletedTask} = data;
+        await Task.findOneAndUpdate({_id:_id},{
+            title:title,
+            checklists:checklists,
+            dueDate:dueDate,
+            priority:priority,
+            countCompletedTask:countCompletedTask
+        },{new:true});
+    } catch (error) {
+        console.log("Somthing went wrong");
+        throw error;
+    }
+   }
 }
 
 module.exports = TaskRepository;
