@@ -32,7 +32,10 @@ const createTask = async(req,res)=>{
 }
 const getTask = async(req,res)=>{
     try {
-        const response = await taskService.get(req.query.userId)
+        const response = await taskService.get({
+        userId: req.query.userId,
+        selectedOption: req.query.selectedOption
+    })
         return res.status(201).json({
             success:true,
             message:"Successfully fetched the task",

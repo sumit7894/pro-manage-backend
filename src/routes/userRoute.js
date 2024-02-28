@@ -8,7 +8,7 @@ const userRouter = express.Router();
 userRouter.route('/update').patch(authenticateUser,update);
 
 userRouter.route('/task').post(authenticateUser,createTask);
-userRouter.route('/task/edit').patch(updateTask);
+userRouter.route('/task/edit').patch(authenticateUser,updateTask);
 
 userRouter.route('/alltask').get(getTask);
 

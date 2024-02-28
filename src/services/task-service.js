@@ -15,9 +15,9 @@ class TaskService{
             console.log("Somthing went wrong in the weeklist service layer");
         }
     }
-    async get(userId){
+    async get(data){
         try {
-            const task = await this.taskRepository.getTask(userId);
+            const task = await this.taskRepository.getTask(data);
             return task;
         } catch (error) {
             console.log("Somthing went wrong in service layer");
