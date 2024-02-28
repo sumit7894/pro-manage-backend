@@ -47,7 +47,15 @@ class TaskService{
             throw error;
         }
     }
-    
+    async findTask(_id){
+        try {
+            const task = await this.taskRepository.findTask(_id);
+            return task;
+        } catch (error) {
+            console.log("Somthing went wrong in service layer");
+            throw error;
+        }
+    }
 }   
     
 

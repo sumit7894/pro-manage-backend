@@ -1,3 +1,4 @@
+const { StatusCodes } = require('http-status-codes');
 const TaskService = require('../services/task-service');
 const UserService = require('../services/user-service');
 
@@ -123,12 +124,31 @@ const updateTask = async(req,res) =>{
     })
     }
 }
-
-
+const findTask = async(req,res)=>{
+    try {
+        const response = await taskService.findTask({
+            _id:req.params.taskId
+        })
+        return res.status(StatusCodes.OK).json({
+            success:true,
+            message:"Successfully fetched the task",
+            data:response,
+            err:{}
+        })
+    } catch (error) {
+    return res.status(error.statusCode).json({
+        success:false,
+        message:error.message,
+        data:{},
+        err:error
+    })
+    }
+}
 module.exports ={
     createTask,
     getTask,
     updateCategory,
     deleteTask,
-    updateTask
+    updateTask,
+    findTask
 }

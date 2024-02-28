@@ -1,3 +1,5 @@
+const { StatusCodes } = require('http-status-codes');
+const ServiceError = require('../Errors/service-error');
 const Task = require('../models/task')
 const User = require('../models/user');
 class TaskRepository{
@@ -81,6 +83,19 @@ class TaskRepository{
         },{new:true});
     } catch (error) {
         console.log("Somthing went wrong");
+        throw error;
+    }
+   }
+   async findTask(_id)
+   {
+    try {
+        const task = await Task.findById(_id);
+        if(!task){
+            throw new ServiceError("Task not found","Error in fetching task",StatusCodes.NOT_FOUND)
+        }
+        return task;
+    } catch (error) {
+        console.log("Somthing went wrong in repo layer");
         throw error;
     }
    }
