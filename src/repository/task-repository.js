@@ -91,11 +91,11 @@ class TaskRepository{
     try {
         const task = await Task.findById(_id);
         if(!task){
-            throw new ServiceError("Task not found","Error in fetching task",StatusCodes.NOT_FOUND)
+            throw new Error("Task not found");
         }
         return task;
     } catch (error) {
-        console.log("Somthing went wrong in repo layer");
+        console.log("Somthing went wrong in repo layer in findTask");
         throw error;
     }
    }

@@ -7,7 +7,11 @@ const userRouter = require('./src/routes/userRoute');
 const taskRouter = require('./src/routes/taskRoute');
 const app = express();
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    credentials: true,
+    origin: "*",
+  };
+app.use(cors(corsOptions));
 app.use('/',authRouter);
 app.use('/user',userRouter);
 app.use('/',taskRouter);
