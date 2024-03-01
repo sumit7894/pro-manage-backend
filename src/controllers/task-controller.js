@@ -136,7 +136,7 @@ const findTask = async(req,res)=>{
             err:{}
         })
     } catch (error) {
-    return res.status(error.statusCode).json({
+    return res.status(404).json({
         success:false,
         message:error.message,
         data:{},
